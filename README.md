@@ -1,6 +1,6 @@
 # Cambridge Core PDF Merger
 
-A specialized Python utility designed to merge individual PDF chapters and sections—typically downloaded from Cambridge Core—into a single, professionally structured book.
+A specialized Python utility designed to merge individual PDF chapters and sections downloaded from [Cambridge Core](https://www.cambridge.org/core) into a single, well-structured book.
 
 ## Features
 
