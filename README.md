@@ -17,7 +17,7 @@ A specialized Python utility designed to merge individual PDF chapters and secti
 
 ## Installation
 
-### Using Pipenv (Recommended)
+### Using [Pipenv](https://pipenv.pypa.io/en/latest/installation.html) (Recommended)
 
 ```powershell
 # Install dependencies from Pipfile
