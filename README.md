@@ -77,6 +77,11 @@ The numerical prefix (`XX.Y`) is used for logical ordering, while the remaining 
 4. **Assembly**: It uses `pypdf` to concatenate the files, injecting hierarchical bookmarks as it goes.
 5. **Cleanup**: Temporary extraction folders are removed after processing.
 
+## External links
+
+https://www.cambridge.org/core
+https://github.com/pcdi/cambridge_core_downloader
+
 ## License
 
 This project is open-source. Please refer to the repository's licensing terms (if applicable) for usage permissions.
