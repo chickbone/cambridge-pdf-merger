@@ -54,11 +54,29 @@ The script now supports command-line arguments for greater flexibility:
     python merge_pdfs.py my_book.zip -o Final_Book.pdf
     ```
 
+### Building the Executable (Local)
+If you want to build the `.exe` locally on Windows:
+```powershell
+pipenv install --dev
+pipenv run pyinstaller --onefile --console --name cambridge-pdf-merger merge_pdfs.py
+```
+The executable will be generated in the `dist/` folder.
+
+### Automated Releases (GitHub Actions)
+A GitHub Actions workflow is configured to automatically build and release the executable:
+1.  **Tag the release**: Push a tag starting with `v` (e.g., `v1.0.0`).
+    ```powershell
+    git tag v1.0.0
+    git push origin v1.0.0
+    ```
+2.  **Wait for Build**: The "Build and Release" workflow will trigger on the Windows runner.
+3.  **Download Asset**: Once finished, the `cambridge-pdf-merger.exe` will be attached to the new GitHub Release.
+
 ### Script Logic
 The `merge_pdfs.py` script performs the following:
 1.  **CLI Arguments:** Uses `argparse` to handle user-specified inputs and outputs.
 2.  **ZIP Handling:** Uses `zipfile` and `shutil` for extraction and cleanup.
 3.  **Ordering:** Sorts PDF files alphabetically based on their numerical prefix (`XX.Y`).
-3.  **Parsing:** Extracts descriptive titles from the filenames.
-4.  **Hierarchy:** Identifies `XX.0` files as parent chapters and nests `XX.Y` files beneath them.
-5.  **Concatenation:** Merges all files with a hierarchical bookmark tree.
+4.  **Parsing:** Extracts descriptive titles from the filenames.
+5.  **Hierarchy:** Identifies `XX.0` files as parent chapters and nests `XX.Y` files beneath them.
+6.  **Concatenation:** Merges all files with a hierarchical bookmark tree.
