@@ -1,5 +1,9 @@
 # Cambridge Core PDF Merger
 
+<!-- LATEST_RELEASE_BANNER_START -->
+[![Latest Release](https://img.shields.io/github/v/release/chickbone/cambridge-pdf-merger?color=green&label=Latest%20Release)](https://github.com/chickbone/cambridge-pdf-merger/releases/latest)
+<!-- LATEST_RELEASE_BANNER_END -->
+
 A specialized Python utility designed to merge individual PDF chapters and sections downloaded from [Cambridge Core](https://www.cambridge.org/core) into a single, well-structured book.
 
 ## Features
@@ -17,6 +21,17 @@ A specialized Python utility designed to merge individual PDF chapters and secti
 
 ## Installation
 
+### Install from package
+
+Pre-build package are found on the [Releases](https://github.com/chickbone/cambridge-pdf-merger/releases) page.
+
+### Install from source
+
+```sh
+git clone https://github.com/chickbone/cambridge-pdf-merger.git
+cd cambridge-pdf-merger
+```
+
 ### Using [Pipenv](https://pipenv.pypa.io/en/latest/installation.html) (Recommended)
 
 ```powershell
@@ -27,25 +42,19 @@ pipenv install
 pipenv run python merge_pdfs.py
 ```
 
-### Using Pip
+### Or Using Pip directly
 
 ```powershell
 pip install pypdf
 ```
 
+
 ## Usage
 
-The script is designed to be run from the command line with several modes:
+The script is designed to be run from the command line:
 
-### 1. Automatic Mode (Default)
-Processes all `.zip` files in the current folder. If no ZIPs are found, it merges all PDFs in the current folder into `Merged_Document.pdf`.
-
-```powershell
-python merge_pdfs.py
-```
-
-### 2. Specific ZIP or Directory
-Specify a particular ZIP archive or a folder containing PDF files.
+### 1. Specific ZIP or Directory
+Specify a particular ZIP archive or a folder containing PDF files. **This argument is now required.**
 
 ```powershell
 python merge_pdfs.py my_book.zip
@@ -53,7 +62,7 @@ python merge_pdfs.py my_book.zip
 python merge_pdfs.py ./path/to/pdf_folder
 ```
 
-### 3. Custom Output Name
+### 2. Custom Output Name
 Use the `-o` or `--output` flag to define the resulting file name.
 
 ```powershell
@@ -79,8 +88,8 @@ The numerical prefix (`XX.Y`) is used for logical ordering, while the remaining 
 
 ## External links
 
-https://www.cambridge.org/core
-https://github.com/pcdi/cambridge_core_downloader
+- https://www.cambridge.org/core
+- https://github.com/pcdi/cambridge_core_downloader
 
 ## License
 

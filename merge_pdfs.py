@@ -96,25 +96,15 @@ def process_zip(zip_path, output_name=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Merge Cambridge Core style PDFs with hierarchical bookmarks.")
-    parser.add_argument("input", nargs="?", help="Path to a ZIP file or a directory containing PDFs.")
+    parser.add_argument("input", help="Path to a ZIP file or a directory containing PDFs.")
     parser.add_argument("-o", "--output", help="Name of the output PDF file.")
     
     args = parser.parse_args()
 
-    if args.input:
-        if zipfile.is_zipfile(args.input):
-            process_zip(args.input, args.output)
-        elif os.path.isdir(args.input):
-            output = args.output if args.output else "Merged_Document.pdf"
-            merge_pdfs_in_dir(args.input, output)
-        else:
-            print(f"Error: Input '{args.input}' is not a valid ZIP file or directory.")
+    if zipfile.is_zipfile(args.input):
+        process_zip(args.input, args.output)
+    elif os.path.isdir(args.input):
+        output = args.output if args.output else "Merged_Document.pdf"
+        merge_pdfs_in_dir(args.input, output)
     else:
-        # Default behavior: look for zips, then fall back to current dir
-        zips = [f for f in os.listdir('.') if f.endswith('.zip')]
-        if zips:
-            for z in zips:
-                process_zip(z)
-        else:
-            output = args.output if args.output else "Merged_Document.pdf"
-            merge_pdfs_in_dir('.', output)
+        print(f"Error: Input '{args.input}' is not a valid ZIP file or directory.")
