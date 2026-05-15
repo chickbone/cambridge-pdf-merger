@@ -1,6 +1,6 @@
 # Cambridge Core PDF Merger
 
-A specialized Python utility designed to merge individual PDF chapters and sections—typically downloaded from Cambridge Core—into a single, professionally structured book.
+A specialized Python utility designed to merge individual PDF chapters and sections downloaded from [Cambridge Core](https://www.cambridge.org/core) into a single, well-structured book.
 
 ## Features
 
@@ -17,7 +17,7 @@ A specialized Python utility designed to merge individual PDF chapters and secti
 
 ## Installation
 
-### Using Pipenv (Recommended)
+### Using [Pipenv](https://pipenv.pypa.io/en/latest/installation.html) (Recommended)
 
 ```powershell
 # Install dependencies from Pipfile
@@ -76,6 +76,11 @@ The numerical prefix (`XX.Y`) is used for logical ordering, while the remaining 
 3. **Sorting**: Files are sorted numerically to maintain the book's intended structure.
 4. **Assembly**: It uses `pypdf` to concatenate the files, injecting hierarchical bookmarks as it goes.
 5. **Cleanup**: Temporary extraction folders are removed after processing.
+
+## External links
+
+https://www.cambridge.org/core
+https://github.com/pcdi/cambridge_core_downloader
 
 ## License
 
