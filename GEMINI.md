@@ -4,52 +4,54 @@ A specialized Python utility for merging individual PDF chapters and sections in
 
 ## Overview
 
-The merger automates the assembly of fragmented PDF files into a cohesive document, complete with a hierarchical table of contents (bookmarks) derived from the file metadata and naming structure.
+The merger automates the assembly of fragmented PDF files into a cohesive document, complete with a hierarchical table of contents (bookmarks) derived from the file metadata and naming structure. It features both a modern CustomTkinter Graphical User Interface (GUI) and a Command-Line Interface (CLI).
 
 ### Key Components
 
-- **`merge_pdfs.py`**: The primary execution script that handles ZIP extraction, logical sorting, and PDF concatenation.
+- **`merge_pdfs.py`**: The primary backend execution script that handles ZIP extraction, logical sorting, and PDF concatenation, and acts as the entry point.
+- **`gui.py`**: The CustomTkinter graphical desktop interface.
 - **Naming Convention (`XX.Y_pp_...pdf`)**: Files are sorted numerically by their prefix. 
   - `XX.0` indicates a primary chapter heading.
   - `XX.Y` indicates a nested sub-section.
 
 ## Usage: Merging the PDFs
 
-The project includes a specialized script to rebuild full books from constituent PDF parts or ZIP archives.
+The project includes both a GUI and a CLI to rebuild full books from constituent PDF parts or ZIP archives.
 
 ### Prerequisites
 - Python 3.x
 - `pypdf` library
+- `customtkinter` library
 
 You can set up the environment using **pipenv**:
 ```powershell
 # Install dependencies from Pipfile
 pipenv install
 
-# Run the script within the virtualenv
+# Run the app (launches GUI by default)
 pipenv run python merge_pdfs.py
 ```
 Alternatively, install directly via pip:
-`pip install pypdf`
+`pip install pypdf customtkinter`
 
 ### Execution
-The script now supports command-line arguments for greater flexibility:
 
-1.  **Automatic Mode (Default):**
+1.  **GUI Mode (Default):**
     ```powershell
     python merge_pdfs.py
+    # OR
+    python gui.py
     ```
-    - Processes all `.zip` files in the current folder.
-    - If no ZIPs are found, merges PDFs in the current folder into `Merged_Document.pdf`.
+    - Launches the interactive CustomTkinter desktop interface with file browsing, theme toggle, and live progress logging.
 
-2.  **Specific ZIP/Directory:**
+2.  **CLI - Specific ZIP/Directory:**
     ```powershell
     python merge_pdfs.py my_book.zip
     # OR
     python merge_pdfs.py ./path/to/pdf_folder
     ```
 
-3.  **Custom Output Name:**
+3.  **CLI - Custom Output Name:**
     ```powershell
     python merge_pdfs.py my_book.zip -o Final_Book.pdf
     ```
@@ -58,7 +60,7 @@ The script now supports command-line arguments for greater flexibility:
 If you want to build the `.exe` locally on Windows:
 ```powershell
 pipenv install --dev
-pipenv run pyinstaller --onefile --console --name cambridge-pdf-merger merge_pdfs.py
+pipenv run pyinstaller --onefile --noconsole --name cambridge-pdf-merger merge_pdfs.py
 ```
 The executable will be generated in the `dist/` folder.
 
@@ -74,9 +76,9 @@ A GitHub Actions workflow is configured to automatically build and release the e
 
 ### Script Logic
 The `merge_pdfs.py` script performs the following:
-1.  **CLI Arguments:** Uses `argparse` to handle user-specified inputs and outputs.
+1.  **CLI/GUI Routing:** Checks command line arguments; launches the CustomTkinter GUI if no input arguments are given, or runs CLI mode if input is provided.
 2.  **ZIP Handling:** Uses `zipfile` and `shutil` for extraction and cleanup.
 3.  **Ordering:** Sorts PDF files alphabetically based on their numerical prefix (`XX.Y`).
 4.  **Parsing:** Extracts descriptive titles from the filenames.
 5.  **Hierarchy:** Identifies `XX.0` files as parent chapters and nests `XX.Y` files beneath them.
-6.  **Concatenation:** Merges all files with a hierarchical bookmark tree.
+6.  **Concatenation:** Merges all files with a hierarchical bookmark tree, reporting status via callbacks.

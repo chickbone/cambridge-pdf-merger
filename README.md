@@ -8,22 +8,24 @@ A specialized Python utility designed to merge individual PDF chapters and secti
 
 ## Features
 
+- **Modern Graphical User Interface (GUI)**: Intuitive CustomTkinter desktop interface with dark/light mode, live progress logs, and file browsing.
 - **Automated Merging**: Concatenates multiple PDF files into one.
 - **Hierarchical Bookmarks**: Automatically generates a nested table of contents (bookmarks) based on file naming conventions.
 - **ZIP Support**: Directly processes ZIP archives downloaded from Cambridge Core.
 - **Smart Sorting**: Organizes files numerically based on their chapter/section prefixes (e.g., `01.0`, `01.1`).
-- **Flexible CLI**: Supports custom input files/directories and output names.
+- **Flexible CLI**: Supports command-line usage for automated scripting and headless environments.
 
 ## Prerequisites
 
 - **Python 3.x**
-- **pypdf** library
+- **pypdf**
+- **customtkinter**
 
 ## Installation
 
 ### Install from package
 
-Pre-build package are found on the [Releases](https://github.com/chickbone/cambridge-pdf-merger/releases) page.
+Pre-built packages are found on the [Releases](https://github.com/chickbone/cambridge-pdf-merger/releases) page.
 
 ### Install from source
 
@@ -38,34 +40,42 @@ cd cambridge-pdf-merger
 # Install dependencies from Pipfile
 pipenv install
 
-# Run the script within the virtualenv
+# Run the app (launches GUI by default)
 pipenv run python merge_pdfs.py
 ```
 
 ### Or Using Pip directly
 
 ```powershell
-pip install pypdf
+pip install pypdf customtkinter
 ```
-
 
 ## Usage
 
-The script is designed to be run from the command line:
-
-### 1. Specific ZIP or Directory
-Specify a particular ZIP archive or a folder containing PDF files. **This argument is now required.**
+### 1. Graphical Interface (GUI)
+Simply run the script without any arguments:
 
 ```powershell
+python merge_pdfs.py
+# OR
+python gui.py
+```
+
+In the GUI:
+1. Choose whether your source is a **ZIP Archive** or a **PDF Folder**.
+2. Click **Browse...** to select your archive or folder (an output name will be auto-suggested).
+3. Click **⚡ Merge PDFs** to start merging. Live progress and chapter hierarchy will display in the console.
+4. Click **📂 Open Merged File** when complete to view the merged PDF.
+
+### 2. Command Line Interface (CLI)
+
+```powershell
+# Merge from a specific ZIP or directory
 python merge_pdfs.py my_book.zip
 # OR
 python merge_pdfs.py ./path/to/pdf_folder
-```
 
-### 2. Custom Output Name
-Use the `-o` or `--output` flag to define the resulting file name.
-
-```powershell
+# Specify a custom output name
 python merge_pdfs.py my_book.zip -o "Final_Book_Name.pdf"
 ```
 
